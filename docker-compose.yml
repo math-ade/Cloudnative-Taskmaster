@@ -1,4 +1,3 @@
-version: '3.8'
 
 services:
   api:
@@ -19,7 +18,7 @@ services:
     image: taskmaster-frontend:v1
     container_name: taskmaster-frontend
     ports:
-      - "8080:80"
+      - "8081:80"
     networks:
       - taskmaster-net
     restart: unless-stopped
