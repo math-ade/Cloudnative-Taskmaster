@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taskmaster-frontend
+  namespace: taskmaster-dev
+  labels:
+    app: taskmaster-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: taskmaster-frontend
+  template:
+    metadata:
+      labels:
+        app: taskmaster-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: mathade/taskmaster-frontend:v1
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "32Mi"
+            cpu: "100m"
+          limits:
+            memory: "64Mi"
+            cpu: "200m"
