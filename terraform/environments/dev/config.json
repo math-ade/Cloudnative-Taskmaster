@@ -1,0 +1,1 @@
+{"environment":"development","images":{"api":"mathade/taskmaster-api:latest","frontend":"mathade/taskmaster-frontend:latest","worker":"mathade/taskmaster-worker:latest"},"namespace":"taskmaster-dev","replicas":2}
