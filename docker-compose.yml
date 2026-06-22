@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  api:
+    image: taskmaster-api:v1
+    container_name: taskmaster-api
+    ports:
+      - "5000:5000"
+    networks:
+      - taskmaster-net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  frontend:
+    image: taskmaster-frontend:v1
+    container_name: taskmaster-frontend
+    ports:
+      - "8080:80"
+    networks:
+      - taskmaster-net
+    restart: unless-stopped
+    depends_on:
+      - api
+
+  worker:
+    image: taskmaster-worker:v1
+    container_name: taskmaster-worker
+    networks:
+      - taskmaster-net
+    restart: unless-stopped
+    depends_on:
+      - api
+
+networks:
+  taskmaster-net:
+    driver: bridge
