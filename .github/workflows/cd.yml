@@ -1,0 +1,24 @@
+name: CD Pipeline
+
+on:
+  workflow_run:
+    workflows: ["CI Pipeline"]
+    types:
+      - completed
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Kubernetes
+        run: |
+          echo "Deploying to Kubernetes cluster"
+          echo "Image tag: ${{ github.sha }}"
+          kubectl set image deployment/taskmaster-api \
+            api=mathade/taskmaster-api:${{ github.sha }} \
+            -n taskmaster-dev || echo "Deploy step - configure kubeconfig for production"
