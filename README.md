@@ -1,3 +1,4 @@
+<img width="726" height="662" alt="image" src="https://github.com/user-attachments/assets/d866c167-f0f1-4fb2-b179-365eeb5f6643" />
 # CloudNative Taskmaster
 
 A production-grade, cloud-native task management platform built with modern DevOps practices.
