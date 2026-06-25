@@ -5,20 +5,29 @@ on:
     workflows: ["CI Pipeline"]
     types:
       - completed
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deploy to Kubernetes
+      - name: Deploy with Docker Compose
         run: |
-          echo "Deploying to Kubernetes cluster"
-          echo "Image tag: ${{ github.sha }}"
-          kubectl set image deployment/taskmaster-api \
-            api=mathade/taskmaster-api:${{ github.sha }} \
-            -n taskmaster-dev || echo "Deploy step - configure kubeconfig for production"
+          cd /home/maths/Cloudnative-Taskmaster
+          docker compose up -d
+
+      - name: Health check
+        run: |
+          sleep 5
+          curl -f http://localhost:5000/health || exit 1
+          echo "✅ Deployment successful"
+
+      - name: Verify metrics
+        run: |
+          curl -sf http://localhost:5000/metrics | grep taskmaster_requests_total
+          echo "✅ Metrics confirmed"
