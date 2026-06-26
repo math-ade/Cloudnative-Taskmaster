@@ -1,5 +1,4 @@
-<img width="726" height="662" alt="image" src="https://github.com/user-attachments/assets/d866c167-f0f1-4fb2-b179-365eeb5f6643" />
-# CloudNative Taskmaster
+# CloudNative-Taskmaster
 
 > A production-grade, cloud-native task management platform built end-to-end with modern DevOps practices — from infrastructure provisioning to live observability.
 
@@ -25,3 +24,18 @@ Everything here was built and operated by hand: no managed Kubernetes services, 
 ## Architecture
 
 ![Architecture Diagram](docs/images/architecture.png)
+
+---
+
+## Full Tech Stack
+
+| Layer | Technology | Location |
+|-------|-----------|----------|
+| Application | Python · Flask · REST API | `app/` |
+| Containerisation | Docker · Docker Compose | `docker-compose.yml` |
+| Infrastructure as Code | Terraform (HCL) | `terraform/` |
+| Orchestration | Kubernetes (kubeadm) · HPA | `k8s/` |
+| CI/CD | GitHub Actions (self-hosted runner) | `.github/workflows/` |
+| Metrics | Prometheus · PromQL · custom instrumentation | `observability/` |
+| Dashboards | Grafana · import-ready JSON | `observability/grafana/` |
+| Logging | Loki · Promtail · LogQL |
