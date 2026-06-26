@@ -1,46 +1,27 @@
 <img width="726" height="662" alt="image" src="https://github.com/user-attachments/assets/d866c167-f0f1-4fb2-b179-365eeb5f6643" />
 # CloudNative Taskmaster
 
-A production-grade, cloud-native task management platform built with modern DevOps practices.
+> A production-grade, cloud-native task management platform built end-to-end with modern DevOps practices — from infrastructure provisioning to live observability.
 
-## Tech Stack
+[![CI Pipeline](https://github.com/math-ade/Cloudnative-Taskmaster/actions/workflows/ci.yml/badge.svg)](https://github.com/math-ade/Cloudnative-Taskmaster/actions)
+[![CD Pipeline](https://github.com/math-ade/Cloudnative-Taskmaster/actions/workflows/cd.yml/badge.svg)](https://github.com/math-ade/Cloudnative-Taskmaster/actions)
+[![Stack](https://img.shields.io/badge/stack-Flask%20%7C%20Prometheus%20%7C%20Grafana%20%7C%20Loki-informational?style=flat-square)](/)
+[![IaC](https://img.shields.io/badge/IaC-Terraform-7B42BC?style=flat-square&logo=terraform)](terraform/)
+[![Orchestration](https://img.shields.io/badge/orchestration-Kubernetes-326CE5?style=flat-square&logo=kubernetes)](k8s/)
+[![Platform](https://img.shields.io/badge/platform-CentOS%20Stream%2010-blue?style=flat-square)](/)
+[![Containers](https://img.shields.io/badge/containers-7%20UP-brightgreen?style=flat-square)](/)
+[![License](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)](LICENSE)
 
-| Layer | Technology |
-|-------|-----------|
-| Infrastructure | Terraform |
-| Configuration | Ansible |
-| Container Runtime | Docker |
-| Orchestration | Kubernetes (kubeadm) |
-| CI/CD | GitHub Actions |
-| Registry | Docker Hub |
-| Monitoring | Prometheus + Grafana |
-| Logging | Loki |
-| Ingress | NGINX |
+---
+
+## What This Is
+
+CloudNative-Taskmaster is a Flask REST API deployed on a self-hosted Linux stack with a complete production-grade DevOps pipeline built around it — from infrastructure as code and container orchestration through to CI/CD automation, Kubernetes with autoscaling, and a full Prometheus + Grafana + Loki observability layer.
+
+Everything here was built and operated by hand: no managed Kubernetes services, no click-ops, no pre-baked cloud environments. The intent is to demonstrate the skills that matter in production — understanding what breaks, why, and how to build systems that tell you before users notice.
+
+---
 
 ## Architecture
 
-- **app/** - Microservices (Frontend, API, Worker)
-- **terraform/** - Infrastructure as Code
-- **ansible/** - Configuration management
-- **k8s/** - Kubernetes manifests
-- **observability/** - Monitoring stack
-- **.github/workflows/** - CI/CD pipelines
-
-## Getting Started
-
-```bash
-# Clone the repository
-git clone git@github.com:math-ade/Cloudnative-Taskmaster.git
-cd Cloudnative-Taskmaster
-
-# Initialize infrastructure
-make init
-
-# Deploy application
-make deploy
-```
-
-## Author
-
-**Adetunji Mathew Babatunde**
-Cloud & DevOps Engineer | Lagos, Nigeria
+![Architecture Diagram](docs/images/architecture.png)
